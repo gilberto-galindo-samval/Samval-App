@@ -10,6 +10,6 @@ import { environment } from '../../../environments/environment';
 })
 export class ButtonComponent {
 
-  enviroment = environment.production
+  enviroment = environment.environmentName
 
 }
