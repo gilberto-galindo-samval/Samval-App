@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
+ARG ENV_FILE_NAME=environment.$BUILD_ENV.ts
+RUN sed -i "s|##ENV_NAME_PLACEHOLDER##|$BUILD_ENV|g" src/environments/$ENV_FILE_NAME
+
 RUN npm run build -- --configuration=$BUILD_ENV
 
 FROM nginx:alpine
