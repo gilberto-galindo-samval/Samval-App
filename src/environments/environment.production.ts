@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiBaseUrl: 'http://google.com/v1',
-  environmentName :'Productivo'
+  environmentName :'##ENV_NAME_PLACEHOLDER##'
 };

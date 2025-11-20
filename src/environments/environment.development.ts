@@ -2,6 +2,6 @@ export const environment = {
 
   production: false,
   apiBaseUrl: 'http://google.com',
-  environmentName :'Desarrollo'
+  environmentName :'##ENV_NAME_PLACEHOLDER##'
 
 };
