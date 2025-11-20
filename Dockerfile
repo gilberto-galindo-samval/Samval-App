@@ -9,15 +9,14 @@ RUN npm install
 COPY . .
 
 ARG ENV_FILE_NAME=environment.$BUILD_ENV.ts
+# Ejecutamos el reemplazo de placeholder (si lo estás usando para el nombre del ambiente)
 RUN sed -i "s|##ENV_NAME_PLACEHOLDER##|$BUILD_ENV|g" src/environments/$ENV_FILE_NAME
 
 RUN npm run build -- --configuration=$BUILD_ENV
 
-# Segunda etapa
 FROM nginx:alpine
 
-# ¡IMPORTANTE! Referenciar la etapa con el mismo nombre en mayúsculas
-COPY --from=BUILDER /app/dist/samval-ui/ /usr/share/nginx/html
+COPY --from=BUILDER /app/dist/samval-ui/browser/ /usr/share/nginx/html
 
 EXPOSE 80
 
