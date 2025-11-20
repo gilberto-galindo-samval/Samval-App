@@ -15,7 +15,7 @@ RUN npm run build -- --configuration=$BUILD_ENV
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist/samval-ui/browser/ /usr/share/nginx/html
+COPY --from=builder /app/dist/samval-ui/ /usr/share/nginx/html
 
 EXPOSE 80
 
