@@ -1,4 +1,4 @@
-FROM node:20-slim as builder
+FROM node:20-slim AS BUILDER
 ARG BUILD_ENV=production
 
 WORKDIR /app
@@ -13,9 +13,11 @@ RUN sed -i "s|##ENV_NAME_PLACEHOLDER##|$BUILD_ENV|g" src/environments/$ENV_FILE_
 
 RUN npm run build -- --configuration=$BUILD_ENV
 
+# Segunda etapa
 FROM nginx:alpine
 
-COPY --from=builder /app/dist/samval-ui/ /usr/share/nginx/html
+# ¡IMPORTANTE! Referenciar la etapa con el mismo nombre en mayúsculas
+COPY --from=BUILDER /app/dist/samval-ui/ /usr/share/nginx/html
 
 EXPOSE 80
 
